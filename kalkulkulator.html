@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Sederhana</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: #f2f2f2;
+        }
+
+        .calculator {
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            padding: 20px;
+            width: 320px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #display {
+            width: 100%;
+            height: 60px;
+            font-size: 2.5em;
+            padding: 10px;
+            text-align: right;
+            background-color: #222;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        input[type="button"] {
+            width: 70px;
+            height: 70px;
+            font-size: 1.5em;
+            background-color: #f0f0f0;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        input[type="button"]:hover {
+            background-color: #ddd;
+            transform: translateY(-2px);
+        }
+
+        input[type="button"]:active {
+            background-color: #bbb;
+            transform: translateY(2px);
+        }
+
+        input[type="button"].operator {
+            background-color: #f4a261;
+            color: white;
+        }
+
+        input[type="button"].operator:hover {
+            background-color: #e77f4d;
+        }
+
+        input[type="button"].equal {
+            background-color: #2d9f73;
+            color: white;
+            flex-grow: 2;
+        }
+
+        input[type="button"].equal:hover {
+            background-color: #28a44b;
+        }
+
+        input[type="button"].clear {
+            background-color: #e63946;
+            color: white;
+        }
+
+        input[type="button"].clear:hover {
+            background-color: #c92a2a;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" id="display" disabled>
+        <div class="row">
+            <input type="button" value="7" onclick="appendToDisplay('7')">
+            <input type="button" value="8" onclick="appendToDisplay('8')">
+            <input type="button" value="9" onclick="appendToDisplay('9')">
+            <input type="button" value="/" onclick="appendToDisplay('/')">
+        </div>
+        <div class="row">
+            <input type="button" value="4" onclick="appendToDisplay('4')">
+            <input type="button" value="5" onclick="appendToDisplay('5')">
+            <input type="button" value="6" onclick="appendToDisplay('6')">
+            <input type="button" value="*" onclick="appendToDisplay('*')">
+        </div>
+        <div class="row">
+            <input type="button" value="1" onclick="appendToDisplay('1')">
+            <input type="button" value="2" onclick="appendToDisplay('2')">
+            <input type="button" value="3" onclick="appendToDisplay('3')">
+            <input type="button" value="-" onclick="appendToDisplay('-')">
+        </div>
+        <div class="row">
+            <input type="button" value="0" onclick="appendToDisplay('0')">
+            <input type="button" value="C" class="clear" onclick="clearDisplay()">
+            <input type="button" value="=" class="equal" onclick="calculate()">
+            <input type="button" value="+" class="operator" onclick="appendToDisplay('+')">
+        </div>
+    </div>
+
+    <script>
+        // Fungsi untuk menambah angka atau operator ke tampilan
+        function appendToDisplay(value) {
+            document.getElementById('display').value += value;
+        }
+
+        // Fungsi untuk menghapus tampilan
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+        }
+
+        // Fungsi untuk menghitung hasil dari ekspresi
+        function calculate() {
+            try {
+                var result = eval(document.getElementById('display').value);
+                document.getElementById('display').value = result;
+            } catch (e) {
+                document.getElementById('display').value = 'Error';
+            }
+        }
+    </script>
+</body>
+</html>
